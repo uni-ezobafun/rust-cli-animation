@@ -5,10 +5,12 @@ pub fn start() {
   loop {
     let latest_timestamp: i64 = Utc::now().timestamp_millis();
     let running_timestamp: u64 = (latest_timestamp - oldest_timestamp) as u64;
+    if running_timestamp > 1000 {
+      break;
+    }
     redraw(running_timestamp);
   }
 }
-
-fn redraw(t: u64) {
-  println!("{}", t);
+fn redraw(timestamp: u64) {
+  println!("{}", timestamp);
 }
