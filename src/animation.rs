@@ -1,5 +1,7 @@
 use chrono::Utc;
 
+mod line;
+
 pub fn start() {
   let oldest_timestamp: i64 = Utc::now().timestamp_millis();
   loop {
@@ -11,6 +13,11 @@ pub fn start() {
     redraw(running_timestamp);
   }
 }
+
 fn redraw(timestamp: u64) {
-  println!("{}", timestamp);
+  let line = line::Line {
+    index: timestamp,
+    content: String::from("          "),
+  };
+  println!("{} -> {}", line.get_index(), line.get_content());
 }
